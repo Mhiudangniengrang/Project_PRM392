@@ -57,4 +57,15 @@
     <string name="let_s_get_started">Let\'s Get Started</string>
     <string name="recommendation">Recommendation</string>
     <string name="see_all">See all</string>
+    <string name="logo">Logo</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="m_t_kh_u">Password</string>
+    <string name="ng_nh_p">Login</string>
+    <string name="ng_k">Register</string>
+    <string name="qu_n_m_t_kh_u">Forgot Password?</string>
+    <string name="logos">Logo</string>
+    <string name="register">REGISTER</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="back">Back</string>
 </resources>

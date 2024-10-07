@@ -17,14 +17,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="Logo" />
+        android:contentDescription="@string/logo" />
 
     <!-- Tiêu đề LOGIN -->
+
     <TextView
         android:id="@+id/textViewLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
@@ -37,7 +38,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/textViewLoginTitle"
@@ -51,7 +52,7 @@
         android:id="@+id/editTextPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Mật khẩu"
+        android:hint="@string/m_t_kh_u"
         android:inputType="textPassword"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
@@ -61,11 +62,13 @@
         android:layout_marginEnd="32dp" />
 
     <!-- Nút Đăng nhập -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Đăng nhập"
+        android:text="@string/ng_nh_p"
+        android:background="@drawable/green_button_bg"
+        android:textColor="@color/white"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,12 +77,14 @@
         android:layout_marginEnd="32dp" />
 
     <!-- Nút Đăng ký -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Đăng ký"
+        android:text="@string/ng_k"
         android:layout_marginTop="16dp"
+        android:background="@drawable/green_button_bg"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +96,7 @@
         android:id="@+id/textForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quên mật khẩu?"
+        android:text="@string/qu_n_m_t_kh_u"
         android:textColor="@android:color/holo_blue_light"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
