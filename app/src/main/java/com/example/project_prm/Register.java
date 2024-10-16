@@ -50,11 +50,11 @@ public class Register extends AppCompatActivity {
         // Handle register button click
         buttonRegister.setOnClickListener(v -> registerUser());
 
-        // Handle back to login button click
+        // Handle back to intro button click
         buttonBackToLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(Register.this, Login.class);
+            Intent intent = new Intent(Register.this, MainActivity.class);
             startActivity(intent);
-            finish(); // Đóng RegisterActivity để ngăn quay lại màn hình này
+            finish(); // Close RegisterActivity to prevent going back to this screen
         });
     }
 
@@ -65,21 +65,21 @@ public class Register extends AppCompatActivity {
 
         // Validate input fields
         if (TextUtils.isEmpty(email)) {
-            editTextEmail.setError("Vui lòng nhập email");
+            editTextEmail.setError("Please enter email !");
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            editTextPassword.setError("Vui lòng nhập mật khẩu");
+            editTextPassword.setError("Please enter password !");
             return;
         }
         if (!password.equals(confirmPassword)) {
-            editTextConfirmPassword.setError("Mật khẩu không khớp");
+            editTextConfirmPassword.setError("Password does not match !");
             return;
         }
 
-        // Kiểm tra kết nối Internet
+        // Check Internet connection
         if (!isNetworkAvailable()) {
-            Toast.makeText(Register.this, "Không có kết nối internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "No internet", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -92,18 +92,18 @@ public class Register extends AppCompatActivity {
                     buttonRegister.setEnabled(true);  // Re-enable the button after the process completes
                     if (task.isSuccessful()) {
                         // Sign up success, navigate to login activity
-                        Toast.makeText(Register.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Login successfully !", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Register.this, Login.class));
-                        finish(); // Đóng RegisterActivity
+                        finish(); // Close RegisterActivity
                     } else {
                         // If sign up fails, display a message to the user.
-                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Đăng ký thất bại";
-                        Toast.makeText(Register.this, "Đăng ký thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
+                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Login failed !";
+                        Toast.makeText(Register.this, "Login failed !: " + errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    // Kiểm tra kết nối Internet
+    // Check Internet connection
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

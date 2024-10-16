@@ -29,8 +29,8 @@ public class HomeActivity extends AppCompatActivity {
             // Firebase sign out
             mAuth.signOut();
 
-            // Navigate back to LoginActivity
-            Intent intent = new Intent(HomeActivity.this, Login.class);
+            // Navigate back to MainActivity
+            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish(); // Close HomeActivity
