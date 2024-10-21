@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initBanner() {
         // Use the progressBar defined in your XML
-        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.progressBarCategory.setVisibility(View.VISIBLE);
 
         viewModel.getBanners().observe(this, new Observer<List<SliderModel>>() {
             @Override
             public void onChanged(List<SliderModel> sliderModels) {
                 banners(sliderModels);
-                binding.progressBar.setVisibility(View.GONE);
+                binding.progressBarCategory.setVisibility(View.GONE);
             }
         });
 

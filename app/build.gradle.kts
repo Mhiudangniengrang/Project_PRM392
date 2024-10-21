@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+
     alias(libs.plugins.google.gms.google.services)
 }
 
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.project_prm"
-        minSdk = 34
+        minSdk = 26 // Lower it if necessary to support more devices
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -30,8 +31,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    buildFeatures{
-        viewBinding=true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -47,8 +48,14 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.code.gson:gson:2.9.1")
     implementation("com.tbuonomo:dotsindicator:5.0")
-    implementation(libs.firebase.database)
+
+    // Firebase BoM to manage Firebase dependencies versions
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+
+    // Firebase Realtime Database (BoM manages the version)
+    implementation("com.google.firebase:firebase-database")
 }

@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class MainViewModel extends ViewModel {
     }
 
     public void loadBanners() {
+        firebaseDatabase.getReference("Banner");
+
         firebaseDatabase.getReference("Banner").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
