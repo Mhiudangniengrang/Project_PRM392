@@ -43,7 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         firebaseDatabase = FirebaseDatabase.getInstance();
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -68,13 +69,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initBanner() {
         // Use the progressBar defined in your XML
-        binding.progressBarCategory.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
 
         viewModel.getBanners().observe(this, new Observer<List<SliderModel>>() {
             @Override
             public void onChanged(List<SliderModel> sliderModels) {
                 banners(sliderModels);
-                binding.progressBarCategory.setVisibility(View.GONE);
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
 
