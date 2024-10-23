@@ -7,9 +7,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <!-- Hình ảnh sản phẩm chính -->
-
-    <!-- Nút yêu thích (trái tim) -->
+    <!-- Image of the product -->
     <ImageView
         android:id="@+id/pic"
         android:layout_width="164dp"
@@ -22,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <!-- Favorite button (heart icon) -->
     <ImageView
         android:id="@+id/favBtn"
         android:layout_width="24dp"
@@ -33,13 +32,13 @@
         app:layout_constraintTop_toTopOf="@id/pic"
         app:tint="@color/grey" />
 
-    <!-- Tiêu đề sản phẩm -->
+    <!-- Product title -->
     <TextView
         android:id="@+id/titleTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Title"
+        android:text="Product Title"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -47,8 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Biểu tượng sao và điểm đánh giá -->
-
+    <!-- Star rating icon -->
     <ImageView
         android:id="@+id/starIcon"
         android:layout_width="16dp"
@@ -60,26 +58,27 @@
         app:srcCompat="@drawable/star"
         app:tint="@color/orange" />
 
-    <!-- Giá sản phẩm -->
+    <!-- Rating text -->
     <TextView
         android:id="@+id/ratingTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:text="5"
+        android:text="4.5"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/starIcon"
         app:layout_constraintTop_toBottomOf="@id/titleTxt" />
 
+    <!-- Price text -->
     <TextView
         android:id="@+id/priceTxt"
-        android:layout_width="18dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:text="$-"
+        android:text="$95.00"
         android:textColor="@color/green"
         android:textSize="18sp"
         android:textStyle="bold"

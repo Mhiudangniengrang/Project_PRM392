@@ -5,10 +5,13 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 
+import com.example.project_prm.Model.CategoryModel;
+import com.example.project_prm.adappter.CategoryAdapter;
 import com.example.project_prm.Adapter.SliderAdapter;
 import com.example.project_prm.Model.SliderModel;
 import com.example.project_prm.ViewModel.MainViewModel;
@@ -27,8 +30,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initBanner();
+        initCategory();
     }
 
+    private void initCategory() {
+        binding.progressBarCategory.setVisibility(View.VISIBLE);
+
+        viewModel.getCategories().observe(this, new Observer<List<CategoryModel>>() {
+            @Override
+            public void onChanged(List<CategoryModel> categoryModels) {
+                binding.viewCategory.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                binding.viewCategory.setAdapter(new CategoryAdapter(categoryModels));
+                binding.progressBarCategory.setVisibility(View.GONE);
+            }
+        });
+
+        viewModel.loadCategory();
+    }
     private void initBanner() {
         // Use the progressBar defined in your XML
         binding.progressBarCategory.setVisibility(View.VISIBLE);
