@@ -1,9 +1,13 @@
 package com.example.project_prm.adappter;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.project_prm.Activity.ListItemsActivity;
 import com.example.project_prm.R;
 
 import androidx.core.content.ContextCompat;
@@ -15,6 +19,7 @@ import com.example.project_prm.Model.CategoryModel;
 import com.example.project_prm.databinding.ViewholderCategoryBinding;
 
 import java.util.List;
+import java.util.logging.Handler;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
@@ -32,6 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public ViewHolder(ViewholderCategoryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
             binding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -41,6 +47,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         selectedPosition = position;
                         notifyItemChanged(lastSelectedPosition);
                         notifyItemChanged(selectedPosition);
+
+                        // Intent logic
+                        new android.os.Handler(Looper.getMainLooper()).postDelayed(() -> {
+                            Intent intent = new Intent(view.getContext(), ListItemsActivity.class);
+                            intent.putExtra("id", String.valueOf(items.get(position).getId())); // Ensure id is a String
+                            intent.putExtra("title", items.get(position).getTitle());
+                            view.getContext().startActivity(intent);
+                        }, 1000);
                     }
                 }
             });

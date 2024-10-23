@@ -1,5 +1,7 @@
 package com.example.project_prm.ViewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -38,6 +40,32 @@ public class MainViewModel extends ViewModel {
         return _recommended;
     }
 
+    // Load filtered items by category ID
+    public void loadFiltered(int id) {
+        Log.d("MainViewModel", "Loading data for categoryId: " + id);
+        DatabaseReference ref = firebaseDatabase.getReference("Items");
+        Query query = ref.orderByChild("categoryId").equalTo(id);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                List<ItemsModel> lists = new ArrayList<>();
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    ItemsModel item = childSnapshot.getValue(ItemsModel.class);
+                    if (item != null) {
+                        lists.add(item);
+                    }
+                }
+                Log.d("MainViewModel", "Fetched items size: " + lists.size());
+                _recommended.setValue(lists);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("MainViewModel", "Database error: " + error.getMessage());
+            }
+        });
+    }
     // Load recommended items
     public void loadRecommended() {
         DatabaseReference ref = firebaseDatabase.getReference("Items");
