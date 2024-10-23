@@ -91,14 +91,6 @@
                 android:textSize="16sp"
                 android:textColor="@color/black" />
 
-            <!-- Add to Cart Button -->
-            <Button
-                android:id="@+id/addToCartBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Add to Cart" />
-
             <!-- Model Selector with Rating -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,7 +136,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/descriptionTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/darkGrey"
+                android:text="description"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addToCartBtn"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/green_button_bg"
+                    style="@android:style/Widget.Button"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Buy Now"/>
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/grey_bg"
+                    app:srcCompat="@drawable/btn_2"
+                    app:tint="@color/black" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

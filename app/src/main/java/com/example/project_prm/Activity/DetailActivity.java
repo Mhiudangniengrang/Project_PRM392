@@ -48,6 +48,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if (item != null) {
             binding.titleTxt.setText(item.getTitle());
+            binding.descriptionTxt.setText(item.getDescription()); // Fixed description setting
             binding.productImage.setImageResource(R.drawable.grey_bg);  // Set default image for product
             binding.priceTxt.setText("$" + item.getPrice());
             binding.ratingTxt.setText(item.getRating() + " Rating");
@@ -56,7 +57,7 @@ public class DetailActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     item.setNumberInCart(numberOrder);
-                    managementCart.insertFood(item);  // Corrected the method name
+                    managementCart.insertFood(item);
                 }
             });
 
@@ -82,7 +83,6 @@ public class DetailActivity extends AppCompatActivity {
             modelList.addAll(item.getModel());
         }
 
-        // Updated to pass context (this)
         SelectModelAdapter selectModelAdapter = new SelectModelAdapter(this, modelList);
         binding.recyclerView.setAdapter(selectModelAdapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
