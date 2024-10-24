@@ -68,4 +68,16 @@
     <string name="register">REGISTER</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="back">Back</string>
+    <string name="my_card">My Card</string>
+    <string name="textview">TextView</string>
+    <string name="fee_delivery">Fee Delivery</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="total">Total</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="your_cart_is_empty">Your Cart Is Empty</string>
+    <string name="cash">Cash</string>
+    <string name="pay_cash_when_the_medicine_arivest_at_the_desitination">pay cash when the medicine\narrives at the destination</string>
+    <string name="my_cart">My Cart</string>
+    <string name="pay_cash_when_the_medicine">pay cash when the medicine</string>
 </resources>
