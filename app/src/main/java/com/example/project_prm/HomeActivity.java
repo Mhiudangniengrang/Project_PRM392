@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 
+import com.example.project_prm.Activity.CartActivity;
 import com.example.project_prm.Adapter.RecommendedAdapter;
 import com.example.project_prm.Adapter.SliderAdapter;
 import com.example.project_prm.Model.CategoryModel;
@@ -73,6 +74,16 @@ public class HomeActivity extends AppCompatActivity {
         initBanner();
         initCategory();
         initRecommended();
+        initBottomMenu();
+    }
+
+    private void initBottomMenu() {
+        binding.cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CartActivity.class));
+            }
+        });
     }
 
     private void initRecommended() {

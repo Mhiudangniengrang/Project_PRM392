@@ -1,5 +1,6 @@
 package com.example.project_prm.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -47,12 +48,14 @@ public class DetailActivity extends AppCompatActivity {
         item = getIntent().getParcelableExtra("object");
 
         if (item != null) {
+            // Set item details to the UI elements
             binding.titleTxt.setText(item.getTitle());
-            binding.descriptionTxt.setText(item.getDescription()); // Fixed description setting
-            binding.productImage.setImageResource(R.drawable.grey_bg);  // Set default image for product
+            binding.descriptionTxt.setText(item.getDescription());
+            binding.productImage.setImageResource(R.drawable.grey_bg);
             binding.priceTxt.setText("$" + item.getPrice());
             binding.ratingTxt.setText(item.getRating() + " Rating");
 
+            // Add item to cart when the button is clicked
             binding.addToCartBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -61,6 +64,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
             });
 
+            // Go back to the previous screen when the back button is clicked
             binding.backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -68,10 +72,19 @@ public class DetailActivity extends AppCompatActivity {
                 }
             });
 
+            // Handle favorite button logic (if needed)
             binding.favBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Add logic for the favorite button here if needed
+                    // Add logic for the favorite button here
+                }
+            });
+
+            // Go to CartActivity when cart button is clicked
+            binding.cartBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(DetailActivity.this, CartActivity.class));
                 }
             });
         }

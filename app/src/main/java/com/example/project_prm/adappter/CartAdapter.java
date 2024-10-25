@@ -1,5 +1,6 @@
 package com.example.project_prm.adappter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project_prm.Helper.ChangeNumberItemsListener;
+import com.example.project_prm.Model.ItemsModel;
 import com.example.project_prm.R;
+import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private List<CartItem> cartItems;
+    private List<ItemsModel> cartItems;
+    private Context context;
+    private ChangeNumberItemsListener changeNumberItemsListener;
 
-    public CartAdapter(List<CartItem> cartItems) {
+    // Update the constructor to accept three parameters
+    public CartAdapter(List<ItemsModel> cartItems, Context context, ChangeNumberItemsListener changeNumberItemsListener) {
         this.cartItems = cartItems;
+        this.context = context;
+        this.changeNumberItemsListener = changeNumberItemsListener;
     }
 
     @NonNull
@@ -32,12 +42,45 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartItem item = cartItems.get(position);
-        holder.productName.setText(item.getName());
-        holder.productPrice.setText(item.getPrice());
-        holder.productQuantity.setText(String.valueOf(item.getQuantity()));
-        // You can load the image using libraries like Glide or Picasso.
+        // Get the current item from the cart
+        ItemsModel item = cartItems.get(position);
+
+        // Set the product name, price, and quantity to the appropriate views
+        holder.productName.setText(item.getTitle());
+        holder.productPrice.setText(String.format("$$%.2f", item.getPrice()));
+        holder.productQuantity.setText(String.valueOf(item.getNumberInCart()));
+
+        // Load the product image using Glide
+        if (item.getPicUrl() != null && !item.getPicUrl().isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(item.getPicUrl().get(0))  // Load the first image in the list
+                    .into(holder.productImage);
+        }
+
+        // Set up the increase button functionality
+        holder.buttonIncrease.setOnClickListener(v -> {
+            item.setNumberInCart(item.getNumberInCart() + 1);  // Increase the quantity in the cart
+            notifyItemChanged(position);  // Update the item in the RecyclerView
+            changeNumberItemsListener.onChanged();  // Notify the listener about the change
+        });
+
+        // Set up the decrease button functionality
+        holder.buttonDecrease.setOnClickListener(v -> {
+            if (item.getNumberInCart() > 1) {  // Ensure the quantity doesn't go below 1
+                item.setNumberInCart(item.getNumberInCart() - 1);  // Decrease the quantity in the cart
+                notifyItemChanged(position);  // Update the item in the RecyclerView
+                changeNumberItemsListener.onChanged();  // Notify the listener about the change
+            }
+        });
+
+        // Set up the remove item functionality (if necessary)
+        holder.removeItem.setOnClickListener(v -> {
+            cartItems.remove(position);  // Remove the item from the list
+            notifyItemRemoved(position);  // Notify the RecyclerView that an item was removed
+            changeNumberItemsListener.onChanged();  // Notify the listener about the change
+        });
     }
+
 
     @Override
     public int getItemCount() {
