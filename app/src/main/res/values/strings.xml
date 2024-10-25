@@ -68,4 +68,9 @@
     <string name="register">REGISTER</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="back">Back</string>
+    <string name="my_cart">My Cart</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="pay_cash_when_the_medicines_at_the_destination">Pay Cash When the medicines\n at the destination</string>
+    <string name="login_to_your_online_account_and_make_payment">Login to your online account and make payment</string>
 </resources>

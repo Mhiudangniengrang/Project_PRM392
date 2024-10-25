@@ -31,6 +31,12 @@ public class ListItemsActivity extends AppCompatActivity {
 
         // Load filtered data after getting the bundle
         viewModel.loadFiltered(id);
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish(); // Closes the current activity and goes back to the previous one
+            }
+        });
     }
 
     private void initList() {
