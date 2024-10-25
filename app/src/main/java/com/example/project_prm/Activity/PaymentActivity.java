@@ -60,6 +60,11 @@ public class PaymentActivity extends AppCompatActivity {
             return;
         }
 
+        // Set MoMo action to PAYMENT
+        AppMoMoLib.getInstance().setAction(AppMoMoLib.ACTION.PAYMENT);
+        AppMoMoLib.getInstance().setActionType(AppMoMoLib.ACTION_TYPE.GET_TOKEN);
+
+        // Prepare payment details
         Map<String, Object> eventValue = new HashMap<>();
         eventValue.put("merchantname", "Demo SDK");
         eventValue.put("merchantcode", "SCB01");
@@ -68,7 +73,6 @@ public class PaymentActivity extends AppCompatActivity {
         eventValue.put("orderLabel", "Mã đơn hàng");
         eventValue.put("merchantnamelabel", "Dịch vụ");
         eventValue.put("description", "Payment for Order #123");
-
         eventValue.put("requestId", "merchant_billId_" + System.currentTimeMillis());
         eventValue.put("partnerCode", "SCB01");
 
@@ -81,7 +85,9 @@ public class PaymentActivity extends AppCompatActivity {
         }
         eventValue.put("extraData", objExtraData.toString());
 
+        // Request MoMo payment
         AppMoMoLib.getInstance().requestMoMoCallBack(this, eventValue);
+
     }
 
     @Override
