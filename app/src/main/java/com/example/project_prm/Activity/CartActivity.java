@@ -1,8 +1,11 @@
 package com.example.project_prm.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +22,9 @@ public class CartActivity extends AppCompatActivity {
     private ManagmentCart managementCart;
     private RecyclerView viewCart;
     private TextView emptyTxt, totalFeeTxt, taxTxt, deliveryTxt, totalTxt;
+    private LinearLayout method1, method2; // Cash and Bank Transfer methods
+    private View checkOutButton;
+    private boolean isBankTransferSelected = false; // Track payment method selection
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +33,44 @@ public class CartActivity extends AppCompatActivity {
 
         managementCart = new ManagmentCart(this);
 
-        // Ánh xạ các view
+        // Initialize views
         viewCart = findViewById(R.id.viewCart);
         emptyTxt = findViewById(R.id.emptyTxt);
         totalFeeTxt = findViewById(R.id.totalFeeTxt);
         taxTxt = findViewById(R.id.taxTxt);
         deliveryTxt = findViewById(R.id.deliveryTxt);
         totalTxt = findViewById(R.id.totalTxt);
+        method1 = findViewById(R.id.method1); // Cash payment
+        method2 = findViewById(R.id.method2); // Bank Transfer payment
+        checkOutButton = findViewById(R.id.button6); // Check Out button
 
-        // Thiết lập sự kiện cho các nút và tính toán giỏ hàng
         setVariable();
         initCartList();
         calculatorCart();
+
+        // Set up listeners for payment methods
+        method1.setOnClickListener(v -> {
+            isBankTransferSelected = false;
+            method1.setBackgroundResource(R.drawable.green_bg_selected);
+            method2.setBackgroundResource(R.drawable.grey_bg_selected);
+        });
+
+        method2.setOnClickListener(v -> {
+            isBankTransferSelected = true;
+            method2.setBackgroundResource(R.drawable.green_bg_selected);
+            method1.setBackgroundResource(R.drawable.grey_bg_selected);
+        });
+
+        // Check Out button listener
+        checkOutButton.setOnClickListener(v -> {
+            if (isBankTransferSelected) {
+                Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
+                startActivity(intent);
+            } else {
+                // Show message or handle cash payment here
+                Toast.makeText(CartActivity.this, "Please proceed with cash payment", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initCartList() {
@@ -51,7 +83,7 @@ public class CartActivity extends AppCompatActivity {
                 calculatorCart();
             }
         });
-        viewCart.setAdapter(adapter);  // Đảm bảo CartAdapter được set đúng cách
+        viewCart.setAdapter(adapter);
 
         if (managementCart.getListCart().isEmpty()) {
             emptyTxt.setVisibility(View.VISIBLE);
@@ -61,7 +93,6 @@ public class CartActivity extends AppCompatActivity {
             viewCart.setVisibility(View.VISIBLE);
         }
     }
-
 
     private void calculatorCart() {
         double percentTax = 0.02;
@@ -75,16 +106,11 @@ public class CartActivity extends AppCompatActivity {
         taxTxt.setText(String.format("$$%.2f", tax));
         deliveryTxt.setText(String.format("$$%.2f", delivery));
         totalTxt.setText(String.format("$$%.2f", total));
+        managementCart.updateTinyDB();
     }
 
     private void setVariable() {
-        // Thiết lập sự kiện cho các nút nếu cần
         View backBtn = findViewById(R.id.backbtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Đóng Activity khi nhấn nút quay lại
-            }
-        });
+        backBtn.setOnClickListener(v -> finish());
     }
 }

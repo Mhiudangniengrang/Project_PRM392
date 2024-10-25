@@ -5,15 +5,19 @@ import android.widget.Toast;
 import com.example.project_prm.Model.ItemsModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManagmentCart {
 
     private final TinyDB tinyDB;
     private final Context context;
+    private final ArrayList<ItemsModel> items;
 
     public ManagmentCart(Context context) {
         this.tinyDB = new TinyDB(context);
         this.context = context;
+        ArrayList<ItemsModel> listFood = tinyDB.getListObject("CartList");
+        items = listFood != null ? listFood : new ArrayList<>();
     }
 
     public void insertFood(ItemsModel item) {
@@ -40,8 +44,7 @@ public class ManagmentCart {
     }
 
     public ArrayList<ItemsModel> getListCart() {
-        ArrayList<ItemsModel> listFood = tinyDB.getListObject("CartList");
-        return listFood != null ? listFood : new ArrayList<>();
+        return items;
     }
 
     public void minusItem(ArrayList<ItemsModel> listFood, int position, ChangeNumberItemsListener listener) {
@@ -53,6 +56,10 @@ public class ManagmentCart {
 
         tinyDB.putListObject("CartList", listFood);
         listener.onChanged();
+    }
+
+    public void updateTinyDB () {
+        tinyDB.putListObject("CartList", items);
     }
 
     public void plusItem(ArrayList<ItemsModel> listFood, int position, ChangeNumberItemsListener listener) {
