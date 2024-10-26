@@ -75,4 +75,9 @@
     <string name="login_to_your_online_account_and_make_payment">Login to your online account and make payment</string>
     <string name="enter_address">Enter Address</string>
     <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="pay_with_paypal">Pay with PayPal</string>
+    <string name="pay_with_momo">Pay with MoMo</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_your_address">Enter your address</string>
+    <string name="total_0_00">Total: $0.00</string>
 </resources>

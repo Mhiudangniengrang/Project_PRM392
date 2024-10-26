@@ -10,7 +10,7 @@
         android:id="@+id/tvTotalAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total: $0.00"
+        android:text="@string/total_0_00"
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingBottom="8dp" />
@@ -20,24 +20,31 @@
         android:id="@+id/edAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your address"
-        android:inputType="textPostalAddress" />
+        android:hint="@string/enter_your_address"
+        android:inputType="textPostalAddress"
+        android:padding="12dp"
+        android:background="@drawable/green_button_bg"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black" />
 
     <!-- Phone Number Input -->
     <EditText
         android:id="@+id/edPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your phone number"
+        android:hint="@string/enter_your_phone_number"
         android:inputType="phone"
-        android:layout_marginTop="8dp" />
+        android:padding="12dp"
+        android:background="@drawable/green_button_bg"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/black" />
 
     <!-- Pay with MoMo Button -->
     <Button
         android:id="@+id/btnPay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pay with MoMo"
+        android:text="@string/pay_with_momo"
         android:layout_marginTop="16dp" />
 
     <!-- Pay with PayPal Button -->
@@ -45,7 +52,7 @@
         android:id="@+id/btnPayWithPayPal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pay with PayPal"
+        android:text="@string/pay_with_paypal"
         android:layout_marginTop="8dp" />
 
     <!-- Status Message -->
@@ -54,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Status message will appear here"
+        android:text=""
         android:textSize="16sp" />
 
 </LinearLayout>

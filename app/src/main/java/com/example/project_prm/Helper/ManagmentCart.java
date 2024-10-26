@@ -76,4 +76,9 @@ public class ManagmentCart {
         }
         return fee;
     }
+    public void clearCart() {
+        items.clear();  // Clear the in-memory list
+        tinyDB.putListObject("CartList", items);  // Save the empty list to storage
+        Toast.makeText(context, "Cart has been cleared.", Toast.LENGTH_SHORT).show();
+    }
 }

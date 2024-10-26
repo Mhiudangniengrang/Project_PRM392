@@ -64,6 +64,11 @@ public class CartActivity extends AppCompatActivity {
 
         // Check Out button listener
         checkOutButton.setOnClickListener(v -> {
+            if (managementCart.getListCart().isEmpty()) {
+                Toast.makeText(CartActivity.this, "Please buy something before checkout", Toast.LENGTH_SHORT).show();
+                return; // Exit if the cart is empty
+            }
+
             if (isBankTransferSelected) {
                 Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
                 startActivity(intent);
