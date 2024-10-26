@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 
 import com.example.project_prm.Activity.CartActivity;
+import com.example.project_prm.Activity.MyOrderActivity;
 import com.example.project_prm.Adapter.RecommendedAdapter;
 import com.example.project_prm.Adapter.SliderAdapter;
 import com.example.project_prm.Model.CategoryModel;
@@ -75,16 +76,52 @@ public class HomeActivity extends AppCompatActivity {
         initCategory();
         initRecommended();
         initBottomMenu();
+      //  initOrder();
     }
 
-    private void initBottomMenu() {
-        binding.cartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, CartActivity.class));
-            }
-        });
-    }
+//    private void initBottomMenu() {
+//        binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, CartActivity.class)));
+//
+//        // Add a click listener for My Orders button to open MyOrderActivity
+//        binding.myOrdersBtn.setOnClickListener(v -> {
+//            startActivity(new Intent(HomeActivity.this, MyOrderActivity.class));
+//        });
+//    }
+private void initBottomMenu() {
+    View.OnClickListener menuClickListener = v -> {
+        Intent intent = null;
+        // Check which button is clicked and set the intent accordingly
+        if (v.getId() == binding.cartBtn.getId()) {
+            intent = new Intent(HomeActivity.this, CartActivity.class);
+        } else if (v.getId() == binding.myOrdersBtn.getId()) {
+            intent = new Intent(HomeActivity.this, MyOrderActivity.class);
+        }
+        // Add other button checks here if needed
+        // For example:
+        // else if (v.getId() == binding.profileBtn.getId()) {
+        //    intent = new Intent(HomeActivity.this, ProfileActivity.class);
+        // }
+
+        // Start the activity if intent is set
+        if (intent != null) {
+            startActivity(intent);
+        }
+    };
+
+    // Set the same listener for all buttons
+    binding.cartBtn.setOnClickListener(menuClickListener);
+    binding.myOrdersBtn.setOnClickListener(menuClickListener);
+    // Add more button assignments if necessary
+}
+
+//    private void initOrder() {
+//        binding.cartBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomeActivity.this, MyOrderActivity.class));
+//            }
+//        });
+//    }
 
     private void initRecommended() {
         binding.progressBarRecommendation.setVisibility(View.VISIBLE); // Set the ProgressBar visible

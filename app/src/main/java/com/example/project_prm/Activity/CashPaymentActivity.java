@@ -5,26 +5,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.project_prm.Helper.ManagmentCart;
+import com.example.project_prm.Helper.OrderManager;
+import com.example.project_prm.Model.ItemsModel;
 import com.example.project_prm.R;
+
+import java.util.ArrayList;
 
 public class CashPaymentActivity extends AppCompatActivity {
     private EditText addressEditText, phoneEditText;
     private Button confirmPaymentButton;
+    private ManagmentCart managementCart;
+    private OrderManager orderManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cash_payment);
 
+        // Initialize UI elements
         addressEditText = findViewById(R.id.addressEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
         confirmPaymentButton = findViewById(R.id.confirmPaymentButton);
+
+        // Initialize ManagementCart and OrderManager
+        managementCart = new ManagmentCart(this);
+        orderManager = new OrderManager(this);
 
         // Confirm Payment button listener
         confirmPaymentButton.setOnClickListener(v -> {
@@ -34,9 +42,19 @@ public class CashPaymentActivity extends AppCompatActivity {
             if (address.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
             } else {
-                // Process cash payment here or show a success message
+                // Get items from the cart and calculate the total
+                ArrayList<ItemsModel> cartItems = managementCart.getListCart();
+                double totalAmount = managementCart.getTotalFee();
+
+                // Save the order
+                orderManager.saveOrder(cartItems, totalAmount);
+
+                // Clear the cart
+                managementCart.clearCart();
+
+                // Show success message and finish activity
                 Toast.makeText(this, "Payment confirmed! Thank you.", Toast.LENGTH_SHORT).show();
-                finish(); // End the activity after confirmation
+                finish();
             }
         });
     }
