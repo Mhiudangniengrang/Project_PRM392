@@ -32,13 +32,21 @@
         android:inputType="phone"
         android:layout_marginTop="8dp" />
 
-    <!-- Pay Button -->
+    <!-- Pay with MoMo Button -->
     <Button
         android:id="@+id/btnPay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pay with MoMo"
         android:layout_marginTop="16dp" />
+
+    <!-- Pay with PayPal Button -->
+    <Button
+        android:id="@+id/btnPayWithPayPal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay with PayPal"
+        android:layout_marginTop="8dp" />
 
     <!-- Status Message -->
     <TextView

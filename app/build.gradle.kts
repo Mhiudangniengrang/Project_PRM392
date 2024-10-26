@@ -55,4 +55,5 @@ dependencies {
     implementation("com.github.momo-wallet:mobile-sdk:1.0.7") {
         exclude(group = "com.android.support")
     }
+    implementation("com.paypal.sdk:paypal-android-sdk:2.16.0")
 }

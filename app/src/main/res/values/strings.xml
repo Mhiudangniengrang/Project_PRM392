@@ -73,4 +73,6 @@
     <string name="payment_method">Payment Method</string>
     <string name="pay_cash_when_the_medicines_at_the_destination">Pay Cash When the medicines\n at the destination</string>
     <string name="login_to_your_online_account_and_make_payment">Login to your online account and make payment</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
 </resources>

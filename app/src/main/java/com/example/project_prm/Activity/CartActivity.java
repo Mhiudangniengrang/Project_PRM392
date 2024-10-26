@@ -19,6 +19,7 @@ import com.example.project_prm.adappter.CartAdapter;
 public class CartActivity extends AppCompatActivity {
 
     private double tax = 0.0;
+    private double totalAmount = 0.0;
     private ManagmentCart managementCart;
     private RecyclerView viewCart;
     private TextView emptyTxt, totalFeeTxt, taxTxt, deliveryTxt, totalTxt;
@@ -67,8 +68,10 @@ public class CartActivity extends AppCompatActivity {
                 Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
                 startActivity(intent);
             } else {
-                // Show message or handle cash payment here
-                Toast.makeText(CartActivity.this, "Please proceed with cash payment", Toast.LENGTH_SHORT).show();
+                // Launch CashPaymentActivity with total amount for cash payment
+                Intent intent = new Intent(CartActivity.this, CashPaymentActivity.class);
+                intent.putExtra("TOTAL_AMOUNT", totalAmount);
+                startActivity(intent);
             }
         });
     }
@@ -99,13 +102,13 @@ public class CartActivity extends AppCompatActivity {
         double delivery = 10.0;
 
         tax = Math.round((managementCart.getTotalFee() * percentTax) * 100) / 100.0;
-        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100) / 100.0;
+        totalAmount = Math.round((managementCart.getTotalFee() + tax + delivery) * 100) / 100.0;
         double itemTotal = Math.round(managementCart.getTotalFee() * 100) / 100.0;
 
         totalFeeTxt.setText(String.format("$$%.2f", itemTotal));
         taxTxt.setText(String.format("$$%.2f", tax));
         deliveryTxt.setText(String.format("$$%.2f", delivery));
-        totalTxt.setText(String.format("$$%.2f", total));
+        totalTxt.setText(String.format("$$%.2f", totalAmount));
         managementCart.updateTinyDB();
     }
 
