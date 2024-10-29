@@ -80,4 +80,12 @@
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="enter_your_address">Enter your address</string>
     <string name="total_0_00">Total: $0.00</string>
+    <string name="birthday">Birthday</string>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

@@ -95,12 +95,9 @@ private void initBottomMenu() {
             intent = new Intent(HomeActivity.this, CartActivity.class);
         } else if (v.getId() == binding.myOrdersBtn.getId()) {
             intent = new Intent(HomeActivity.this, MyOrderActivity.class);
+        } else if (v.getId()==binding.myProfile.getId()) {
+            intent = new Intent(HomeActivity.this , Profile.class);
         }
-        // Add other button checks here if needed
-        // For example:
-        // else if (v.getId() == binding.profileBtn.getId()) {
-        //    intent = new Intent(HomeActivity.this, ProfileActivity.class);
-        // }
 
         // Start the activity if intent is set
         if (intent != null) {
@@ -108,10 +105,10 @@ private void initBottomMenu() {
         }
     };
 
-    // Set the same listener for all buttons
+
     binding.cartBtn.setOnClickListener(menuClickListener);
     binding.myOrdersBtn.setOnClickListener(menuClickListener);
-    // Add more button assignments if necessary
+    binding.myProfile.setOnClickListener(menuClickListener);
 }
 
 //    private void initOrder() {
